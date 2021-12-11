@@ -1094,7 +1094,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Red
+  m_Text: Orange
 --- !u!222 &342430180
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Green
+  m_text: Blue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1440,7 +1440,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Yellow
+  m_Text: Green
 --- !u!222 &471814293
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2202,7 +2202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedColour: 
-  testText: 
+  testText: Blue
   TestObject: {fileID: 459172970}
   PlayerButtons:
   - {fileID: 1903748000}
@@ -2214,6 +2214,15 @@ MonoBehaviour:
   - Green
   - Yellow
   - Blue
+  - Orange
+  - Purple
+  - Black
+  - White
+  buttonColors:
+  - Blue
+  - Orange
+  - White
+  - Green
 --- !u!1 &860582201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,7 +2659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit
+  m_Text: Return To Menu
 --- !u!222 &935965815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3019,7 +3028,7 @@ GameObject:
   - component: {fileID: 1135183313}
   - component: {fileID: 1135183312}
   m_Layer: 5
-  m_Name: Button_Quit (1)
+  m_Name: Button_RTM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3498,7 +3507,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Green
+  m_Text: White
 --- !u!222 &1314962120
 CanvasRenderer:
   m_ObjectHideFlags: 0

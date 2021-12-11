@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 
     #region PRIVATE MEMBERS
 
-    private int stateNum; 
+    private int stateNum;
+
     #endregion
 
     #region PUBLIC MEMBERS
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     [Header("GAME STATE")]
     public GameState currentState = GameState.TITLE;
     public GameState previousState;
-    public enum GameState
+   public enum GameState
     {
         TITLE = 0,
         GAMEPLAY = 1,

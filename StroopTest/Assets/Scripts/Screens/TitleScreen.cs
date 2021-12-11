@@ -52,6 +52,22 @@ public class TitleScreen : MonoBehaviour
     
     #region FUNCTIONS
     
+    public void StartButton() {
+       GameManager.Instance.currentState = GameManager.GameState.GAMEPLAY;
+       
+    }
+
+    public void OptionButton() {
+        GameManager.Instance.currentState = GameManager.GameState.OPTIONS;
+    }
+
+    public void QuitButton() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+         #endif
+    }
     
     #endregion
     

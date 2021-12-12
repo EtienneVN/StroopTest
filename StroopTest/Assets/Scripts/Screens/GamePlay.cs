@@ -172,9 +172,12 @@ public class GamePlay : MonoBehaviour
 
     void endGame() {
         if ( GameManager.Instance.player.health <= 0 )
-            GameManager.Instance.currentState = GameManager.GameState.PostGame;
-
+            GameManager.Instance.transitionToState(GameManager.GameState.PostGame);
     }
+    
+    #endregion
+
+    #region BUTTONS
 
     /// <summary>
     /// Sets colour text onto button components
@@ -186,8 +189,12 @@ public class GamePlay : MonoBehaviour
         endGame();
     }
 
-    public void quitToTitle() {
-        GameManager.Instance.currentState = GameManager.GameState.TITLE;
+    public void pauseButton() {
+        GameManager.Instance.transitionToState(GameManager.GameState.PAUSE);
+    }
+    
+    public void ReturnToTitle() {
+        GameManager.Instance.transitionToState(GameManager.GameState.TITLE);
     }
 
     #endregion

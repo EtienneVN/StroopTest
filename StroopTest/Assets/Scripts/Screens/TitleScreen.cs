@@ -7,34 +7,28 @@ public class TitleScreen : MonoBehaviour
 {
     #region CONSTRUCTORS
 
-    
-
     #endregion
-    
-    #region PRIVATE MEMBERS
 
-    
+    #region PRIVATE MEMBERS
 
     #endregion
 
     #region PUBLIC MEMBERS
 
-
-
     #endregion
-    
+
     #region PROPERTIES
-    
-    
+
     #endregion
 
     #region MONOBEHAVIOUR
-    private void onEnable(){
-    
+
+    private void onEnable() {
+
     }
-    
+
     private void Awake() {
-    
+
     }
 
     // Start is called before the first frame update
@@ -46,19 +40,20 @@ public class TitleScreen : MonoBehaviour
     void Update() {
 
     }
-    
-    
+
     #endregion
-    
+
     #region FUNCTIONS
-    
+
     public void StartButton() {
-       GameManager.Instance.currentState = GameManager.GameState.GAMEPLAY;
-       GameManager.Instance.initPlayerData();
+        GameManager.Instance.transitionToState(GameManager.GameState.GAMEPLAY);
+        // GameManager.Instance.currentState = GameManager.GameState.GAMEPLAY;
+        GameManager.Instance.initPlayerData();
     }
 
     public void OptionButton() {
-        GameManager.Instance.currentState = GameManager.GameState.OPTIONS;
+        GameManager.Instance.transitionToState(GameManager.GameState.OPTIONS);
+        // GameManager.Instance.currentState = GameManager.GameState.OPTIONS;
     }
 
     public void QuitButton() {
@@ -68,7 +63,7 @@ public class TitleScreen : MonoBehaviour
          Application.Quit();
          #endif
     }
-    
+
     #endregion
-    
+
 }

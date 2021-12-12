@@ -93,9 +93,7 @@ public class GameManager : MonoBehaviour
                 player.TotalTime += Time.deltaTime;
                 break;
             case GameState.PAUSE:
-                ClearScreen();
                 Pause.SetActive(true);
-              //  player.TotalTime += Time.deltaTime;
                 break;
             case GameState.PostGame:
                 ClearScreen();
@@ -138,8 +136,12 @@ public class GameManager : MonoBehaviour
             stateNum = 0;
         }
 
+        transitionToState((GameState)stateNum);
+    }
+
+    public void transitionToState(GameState state) {
         previousState = currentState;
-        currentState = (GameState)stateNum;
+        currentState = state;
     }
     
     public void initPlayerData() {

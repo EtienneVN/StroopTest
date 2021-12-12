@@ -54,7 +54,7 @@ public class TitleScreen : MonoBehaviour
     
     public void StartButton() {
        GameManager.Instance.currentState = GameManager.GameState.GAMEPLAY;
-       
+       GameManager.Instance.initPlayerData();
     }
 
     public void OptionButton() {

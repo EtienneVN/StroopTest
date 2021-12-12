@@ -8,6 +8,30 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     #region CONSTRUCTORS
+    public static GameManager Instance;
+    #endregion
+
+    #region STRUCTS
+
+    public struct Player
+    {
+        public int health;
+        public int score;
+        public float TotalTime;
+    }
+
+    #endregion
+
+    #region ENUMS
+
+    public enum GameState
+    {
+        TITLE = 0,
+        OPTIONS = 1,
+        GAMEPLAY = 2,
+        PAUSE = 3,
+        PostGame = 4
+    }
 
     #endregion
 
@@ -19,7 +43,9 @@ public class GameManager : MonoBehaviour
 
     #region PUBLIC MEMBERS
 
-    public static GameManager Instance;
+    [Space]
+    [Header("PLAYER OBJECT")]
+    public Player player;
 
     [Header("SCREEN OBJECTS")]
     public GameObject TitleScreen;
@@ -32,15 +58,7 @@ public class GameManager : MonoBehaviour
     [Header("GAME STATE")]
     public GameState currentState = GameState.TITLE;
     public GameState previousState;
-   public enum GameState
-    {
-        TITLE = 0,
-        GAMEPLAY = 1,
-        OPTIONS = 2,
-        PAUSE = 3,
-        PostGame = 4
-    }
-
+   
     #endregion
 
     #region MONOBEHAVIOUR
@@ -72,10 +90,12 @@ public class GameManager : MonoBehaviour
             case GameState.GAMEPLAY:
                 ClearScreen();
                 GamePlay.SetActive(true);
+                player.TotalTime += Time.deltaTime;
                 break;
             case GameState.PAUSE:
                 ClearScreen();
                 Pause.SetActive(true);
+              //  player.TotalTime += Time.deltaTime;
                 break;
             case GameState.PostGame:
                 ClearScreen();
@@ -85,6 +105,11 @@ public class GameManager : MonoBehaviour
                 currentState = GameState.TITLE;
                 _init();
                 break;
+        }
+
+        if ( currentState == GameState.PAUSE ) {
+            GamePlay.SetActive(true);
+            
         }
 
     }
@@ -115,6 +140,12 @@ public class GameManager : MonoBehaviour
 
         previousState = currentState;
         currentState = (GameState)stateNum;
+    }
+    
+    public void initPlayerData() {
+        Instance.player.health = 25;
+        Instance.player.score = 0;
+        Instance.player.TotalTime = 0;
     }
 
     private void ClearScreen() {

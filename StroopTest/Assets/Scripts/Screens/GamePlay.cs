@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -85,11 +86,12 @@ public class GamePlay : MonoBehaviour
             button.GetComponentInChildren<Text>().text = "";
         }
 
+        // Set Stroop Colour
         int r = UnityEngine.Random.Range(0, 4);
         PlayerButtons[r].GetComponentInChildren<Text>().text = testText;
         buttonColors.Add(testText);
 
-        // set button text
+        // set button colours text
         foreach ( var button in PlayerButtons ) {
             String randCol = randomColour(testText);
             if ( button.GetComponentInChildren<Text>().text == "" ) {
@@ -97,6 +99,7 @@ public class GamePlay : MonoBehaviour
                 button.GetComponentInChildren<Text>().text = randCol;
             }
         }
+
     }
 
     /// <summary>
@@ -109,24 +112,15 @@ public class GamePlay : MonoBehaviour
     }
     String randomColour(String s) {
         int r = UnityEngine.Random.Range(0, colours.Count);
+        String randCol = colours[r];
 
-        if ( s != colours[r] ) {
-            return colours[r];
+        if ( !buttonColors.Contains(randCol) ) {
+            return randCol;
         }
 
         return randomColour(s);
     }
 
-    bool checkDuplicateColours() {
-        foreach ( var buttonText in PlayerButtons ) {
-            foreach ( var buttonColor in buttonColors ) {
-                if ( buttonText.GetComponentInChildren<Text>().text == buttonColor ) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     private void reroll() {
         selectedColour = null;

@@ -46,14 +46,14 @@ public class TitleScreen : MonoBehaviour
     #region FUNCTIONS
 
     public void StartButton() {
-        GameManager.Instance.transitionToState(GameManager.GameState.GAMEPLAY);
-        // GameManager.Instance.currentState = GameManager.GameState.GAMEPLAY;
-        GameManager.Instance.initPlayerData();
+        GameManager._instance.transitionToState(GameManager.GameState.GAMEPLAY);
+        // GameManager._instance.currentState = GameManager.GameState.GAMEPLAY;
+        GameManager._instance.initPlayerData();
     }
 
     public void OptionButton() {
-        GameManager.Instance.transitionToState(GameManager.GameState.OPTIONS);
-        // GameManager.Instance.currentState = GameManager.GameState.OPTIONS;
+        GameManager._instance.transitionToState(GameManager.GameState.OPTIONS);
+        // GameManager._instance.currentState = GameManager.GameState.OPTIONS;
     }
 
     public void QuitButton() {

@@ -52,8 +52,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake() {
         if ( !_instance ) _instance = this;
-        if ( !audioSource ) audioSource = gameObject.GetComponent<AudioSource>() ? null : gameObject.AddComponent<AudioSource>();
-        audioSource.clip = null;
+        AudioSourceCheck();
     }
 
     // Start is called before the first frame update
@@ -70,13 +69,18 @@ public class SoundManager : MonoBehaviour
 
     #region FUNCTIONS
 
+    void AudioSourceCheck() {
+        if ( !audioSource ? ( gameObject.GetComponent<AudioSource>() ? audioSource = gameObject.GetComponent<AudioSource>() : audioSource = gameObject.AddComponent<AudioSource>() ) : true ) ;
+        audioSource!.playOnAwake = false;
+    }
+
     /// <summary>
     /// Sound test button
     /// </summary>
     /// <param name="sound"></param>
     [Button("Test Selected Sound")]
     public void playSound(soundSelection sound = soundSelection.playerSelect) {
-        if ( !audioSource ) audioSource = gameObject.GetComponent<AudioSource>() ? null : gameObject.AddComponent<AudioSource>();
+        AudioSourceCheck();
 
         if ( !audioSource.isPlaying ) {
             audioSource.clip = SoundLibrary(sound);

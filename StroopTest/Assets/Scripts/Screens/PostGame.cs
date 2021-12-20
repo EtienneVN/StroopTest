@@ -10,13 +10,7 @@ public class PostGame : MonoBehaviour
     
     // Start is called before the first frame update
     void Start() {
-        scoreData.text = GameManager.Instance.player.score.ToString();
-        timeData.text = GameManager.Instance.player.TotalTime.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        scoreData.text = GameManager._instance.player.score.ToString();
+        timeData.text = GameManager._instance.player.TotalTime.ToString().Split('.')[0];
     }
 }

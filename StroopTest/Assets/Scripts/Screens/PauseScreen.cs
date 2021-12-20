@@ -4,23 +4,12 @@ using UnityEngine;
 
 public class PauseScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+ 
     #region BUTTONS
 
     public void resumeButton() {
-        GameManager.Instance.Pause.SetActive(false);
-        GameManager.Instance.transitionToState(GameManager.GameState.GAMEPLAY);
+        GameManager._instance.Pause.SetActive(false);
+        GameManager._instance.transitionToState(GameManager.GameState.GAMEPLAY);
     }
     
 

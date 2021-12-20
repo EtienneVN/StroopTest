@@ -7,8 +7,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager _instance;
+    
     #region CONSTRUCTORS
-    public static GameManager Instance;
     #endregion
 
     #region STRUCTS
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
     #region MONOBEHAVIOUR
 
     private void Awake() {
-        if ( !Instance ) Instance = this;
+        if ( !_instance ) _instance = this;
         _init();
     }
 
@@ -107,10 +108,14 @@ public class GameManager : MonoBehaviour
 
         if ( currentState == GameState.PAUSE ) {
             GamePlay.SetActive(true);
-            
         }
 
     }
+    #endregion
+
+    #region PUBLIC PROPERTIES
+
+    public int PlayerHealth { get => player.health; set => player.health = value; }
 
     #endregion
 
@@ -132,22 +137,23 @@ public class GameManager : MonoBehaviour
     private void NextState() {
         stateNum++;
 
-        if ( stateNum >= 5 ) {
+        if ( stateNum >= typeof(GameState).GetEnumValues().Length ) {
             stateNum = 0;
         }
-
+        SoundManager._instance.playSound(SoundManager.soundSelection.transition);
         transitionToState((GameState)stateNum);
     }
 
     public void transitionToState(GameState state) {
+        SoundManager._instance.playSound(SoundManager.soundSelection.transition);
         previousState = currentState;
         currentState = state;
     }
     
     public void initPlayerData() {
-        Instance.player.health = 25;
-        Instance.player.score = 0;
-        Instance.player.TotalTime = 0;
+        _instance.PlayerHealth = 15;
+        _instance.player.score = 0;
+        _instance.player.TotalTime = 0;
     }
 
     private void ClearScreen() {

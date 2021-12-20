@@ -60,7 +60,7 @@ public class GamePlay : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        GameManager.Instance.initPlayerData();
+        GameManager._instance.initPlayerData();
         reroll();
     }
 
@@ -70,9 +70,9 @@ public class GamePlay : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        TimeData.text = GameManager.Instance.player.TotalTime.ToString();
-        HealthData.text = GameManager.Instance.player.health.ToString();
-        ScoreData.text = GameManager.Instance.player.score.ToString();
+        TimeData.text =  GameManager._instance.player.TotalTime.ToString().Split('.')[0];
+        HealthData.text = GameManager._instance.player.health.ToString();
+        ScoreData.text = GameManager._instance.player.score.ToString();
     }
 
     #endregion
@@ -90,13 +90,14 @@ public class GamePlay : MonoBehaviour
         testText = TestObject.text;
 
     }
-    
+
     [Button("TestButtons")]
     private void testButton() {
         // Clear the button text
-        buttonColors.Clear();
+       // buttonColors.Clear();
         foreach ( var button in PlayerButtons ) {
             button.GetComponentInChildren<Text>().text = "";
+            // button.GetComponentInChildren<Text>().color = Color.white;
         }
 
         // Set Stroop Colour
@@ -104,21 +105,30 @@ public class GamePlay : MonoBehaviour
         int c = UnityEngine.Random.Range(0, textColour.Count);
         Color testCol = textColour[c];
         testCol.a = 1;
+        TestObject.color = testCol;
         PlayerButtons[r].GetComponentInChildren<Text>().text = testText;
-        TestObject.GetComponentInChildren<TextMeshProUGUI>().color = testCol;
+        // PlayerButtons[r].GetComponentInChildren<Image>().color = testCol;
         buttonColors.Add(testText);
 
         // set button coloursText text
+        // TODO - Change the color of the text and image of the buttons
         foreach ( var button in PlayerButtons ) {
             String randCol = randomColour(testText);
+            c = UnityEngine.Random.Range(0, textColour.Count);
+            testCol = textColour[c];
+            testCol.a = 1;
+            //  button.GetComponentInChildren<Image>().color = testCol;
+            // button.GetComponentInChildren<Text>().color = testCol;
             if ( button.GetComponentInChildren<Text>().text == "" ) {
                 buttonColors.Add(randCol);
                 button.GetComponentInChildren<Text>().text = randCol;
+                // button.GetComponentInChildren<Text>().color = testCol;
+                // button.GetComponentInChildren<Image>().color = testCol;
             }
         }
 
     }
-    
+
 
     /// <summary>
     /// Return a random colour
@@ -134,7 +144,7 @@ public class GamePlay : MonoBehaviour
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
-    String randomColour(String s) {
+    String randomColour(String exclude) {
         int r = UnityEngine.Random.Range(0, coloursText.Count);
         String randCol = coloursText[r];
 
@@ -142,7 +152,7 @@ public class GamePlay : MonoBehaviour
             return randCol;
         }
 
-        return randomColour(s);
+        return randomColour(exclude);
     }
 
     /// <summary>
@@ -157,24 +167,26 @@ public class GamePlay : MonoBehaviour
 
     public bool compareSelectedColour() {
         if ( selectedColour == testText ) {
-            GameManager.Instance.player.score += 10;
             Debug.Log("Correct");
+            SoundManager._instance.playSound();
+            GameManager._instance.player.score += 10;
             reroll();
             return true;
         }
 
         Debug.Log("Incorrect");
-        GameManager.Instance.player.health -= 5;
-        GameManager.Instance.player.score -= 20;
+        SoundManager._instance.playSound(SoundManager.soundSelection.wrongSelection);
+        GameManager._instance.player.health -= 5;
+        GameManager._instance.player.score -= 20;
         reroll();
         return false;
     }
 
     void endGame() {
-        if ( GameManager.Instance.player.health <= 0 )
-            GameManager.Instance.transitionToState(GameManager.GameState.PostGame);
+        if ( GameManager._instance.player.health <= 0 )
+            GameManager._instance.transitionToState(GameManager.GameState.PostGame);
     }
-    
+
     #endregion
 
     #region BUTTONS
@@ -190,11 +202,11 @@ public class GamePlay : MonoBehaviour
     }
 
     public void pauseButton() {
-        GameManager.Instance.transitionToState(GameManager.GameState.PAUSE);
+        GameManager._instance.transitionToState(GameManager.GameState.PAUSE);
     }
-    
+
     public void ReturnToTitle() {
-        GameManager.Instance.transitionToState(GameManager.GameState.TITLE);
+        GameManager._instance.transitionToState(GameManager.GameState.TITLE);
     }
 
     #endregion

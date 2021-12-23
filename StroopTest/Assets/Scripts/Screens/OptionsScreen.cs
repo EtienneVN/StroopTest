@@ -11,27 +11,16 @@ using UnityEngine.UI;
 
 public class OptionsScreen : MonoBehaviour
 {
-    public Toggle mute;
-    public Slider volume;
+    public GameObject resumeButton;
 
-    /// <summary>
-    /// todo - value only changes once 
-    /// </summary>
-    private void Start() {
-        /*if ( SoundManager._instance ) {
-            mute.onValueChanged.AddListener(delegate { ToggleChange(mute); });
-        }*/
+    private void OnEnable() {
+        resumeButton.SetActive(false);
     }
 
-    private void Update() { 
-        /*if ( SoundManager._instance ) {
-            mute.onValueChanged.AddListener(delegate { ToggleChange(mute); });
-        }*/
+    private void Update() {
+        if ( GameManager._instance.previousState == GameManager.GameState.GAMEPLAY ) {
+            resumeButton.SetActive(true);
+        }
     }
-
-    private void ToggleChange(Toggle toggle) {
-        SoundManager._instance.audioSource.mute = toggle;
-    }
-
 
 }

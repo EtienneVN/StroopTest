@@ -201,13 +201,7 @@ public class GamePlay : MonoBehaviour
         endGame();
     }
 
-    public void pauseButton() {
-        GameManager._instance.transitionToState(GameManager.GameState.PAUSE);
-    }
 
-    public void ReturnToTitle() {
-        GameManager._instance.transitionToState(GameManager.GameState.TITLE);
-    }
 
     #endregion
 

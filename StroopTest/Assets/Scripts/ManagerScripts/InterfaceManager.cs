@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,12 @@ using UnityEngine;
 /// </summary>
 public class InterfaceManager : MonoBehaviour
 {
+    private static InterfaceManager _instance;
+
+    private void Awake() {
+        _instance = this;
+        DontDestroyOnLoad(this);
+    }
 
     public void StartGame() {
         GameManager._instance.transitionToState(GameManager.GameState.GAMEPLAY);

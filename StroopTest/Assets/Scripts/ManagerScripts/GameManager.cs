@@ -8,8 +8,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    
+
     #region CONSTRUCTORS
+
     #endregion
 
     #region STRUCTS
@@ -58,14 +59,15 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [Header("GAME STATE")]
     public GameState currentState = GameState.TITLE;
-    public GameState previousState;
-   
+    public GameState previousState = GameState.TITLE;
+
     #endregion
 
     #region MONOBEHAVIOUR
 
     private void Awake() {
         if ( !_instance ) _instance = this;
+        DontDestroyOnLoad(this);
         _init();
     }
 
@@ -79,13 +81,11 @@ public class GameManager : MonoBehaviour
         switch (currentState) {
 
             case GameState.TITLE:
-                previousState = currentState;
                 ClearScreen();
                 TitleScreen.SetActive(true);
                 break;
             case GameState.OPTIONS:
-                previousState = currentState;
-                ClearScreen();
+                if ( previousState != GameState.GAMEPLAY ) { ClearScreen(); }
                 Options.SetActive(true);
                 break;
             case GameState.GAMEPLAY:
@@ -105,12 +105,8 @@ public class GameManager : MonoBehaviour
                 _init();
                 break;
         }
-
-        if ( currentState == GameState.PAUSE ) {
-            GamePlay.SetActive(true);
-        }
-
     }
+
     #endregion
 
     #region PUBLIC PROPERTIES
@@ -140,16 +136,16 @@ public class GameManager : MonoBehaviour
         if ( stateNum >= typeof(GameState).GetEnumValues().Length ) {
             stateNum = 0;
         }
-        SoundManager._instance.playSound(SoundManager.soundSelection.transition);
+//        SoundManager._instance.playSound(SoundManager.soundSelection.playerSelect);
         transitionToState((GameState)stateNum);
     }
 
     public void transitionToState(GameState state) {
-        SoundManager._instance.playSound(SoundManager.soundSelection.transition);
+        SoundManager._instance.playSound(SoundManager.soundSelection.playerSelect);
         previousState = currentState;
         currentState = state;
     }
-    
+
     public void initPlayerData() {
         _instance.PlayerHealth = 15;
         _instance.player.score = 0;

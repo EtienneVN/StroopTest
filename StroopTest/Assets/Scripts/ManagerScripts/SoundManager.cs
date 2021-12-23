@@ -52,6 +52,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake() {
         if ( !_instance ) _instance = this;
+        DontDestroyOnLoad(this);
         AudioSourceCheck();
     }
 
@@ -62,13 +63,18 @@ public class SoundManager : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-
+        // Clear Audiosource in preparation for next sound
+        if ( !audioSource.isPlaying )
+            audioSource.clip = null;
     }
 
     #endregion
 
     #region FUNCTIONS
-
+    
+    /// <summary>
+    /// Checks if there is an Audio Source component 
+    /// </summary>
     void AudioSourceCheck() {
         if ( !audioSource ? ( gameObject.GetComponent<AudioSource>() ? audioSource = gameObject.GetComponent<AudioSource>() : audioSource = gameObject.AddComponent<AudioSource>() ) : true ) ;
         audioSource!.playOnAwake = false;
@@ -82,7 +88,8 @@ public class SoundManager : MonoBehaviour
     public void playSound(soundSelection sound = soundSelection.playerSelect) {
         AudioSourceCheck();
 
-        if ( !audioSource.isPlaying ) {
+        // Prevent duplicate sounds playing
+        if ( audioSource.clip != SoundLibrary(sound) ) {
             audioSource.clip = SoundLibrary(sound);
             audioSource.Play();
         }

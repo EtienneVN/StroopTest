@@ -8,6 +8,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
 
+/// <summary>
+/// Resposible for all the script that is run during the gameplay of the game
+/// </summary>
 public class GamePlay : MonoBehaviour
 {
     #region CONSTRUCTORS
@@ -16,125 +19,124 @@ public class GamePlay : MonoBehaviour
 
     #region PRIVATE MEMBERS
 
+    private const string TestString = "Test Buttons";
+
+    /// <summary>
+    /// used to compare the color selected by the player
+    /// </summary>
+    private string _selectedColour;
+
     #endregion
 
     #region PUBLIC MEMBERS
 
-    public string selectedColour;
-    public String testText;
+    [Tooltip("")]
+    public String stroopText;
 
     [Space]
     [Header("TOPBAR OBJECTS")]
-    public TextMeshProUGUI TimeData;
-    public TextMeshProUGUI ScoreData;
-    public TextMeshProUGUI HealthData;
+    [Tooltip("Text object for the gameplay time")]
+    public TextMeshProUGUI timeData;
+    [Tooltip("Text object for the player score")]
+    public TextMeshProUGUI scoreData;
+    [Tooltip("Text object for the player health")]
+    public TextMeshProUGUI healthData;
 
     [Header("GAMEPLAY OBJECTS")]
-    public TextMeshProUGUI TestObject;
-    public List<GameObject> PlayerButtons;
+    [Tooltip("Text object for the stroop test")]
+    public TextMeshProUGUI testObject;
+    [Tooltip("List of button objects for the player buttons")]
+    public List<GameObject> playerButtons;
 
     [Space(5)]
     [Header("GAMEPLAY COLOUR SETTINGS")]
+    [Tooltip("List strings for the colours")]
     public List<String> coloursText;
+    [Tooltip("List of colours referencing the text")]
     public List<Color> textColour;
 
     [Space]
     [Header("CURRENT GAMEPLAY COLOURS")]
+    [Tooltip("Color text given to buttons during current gameplay")]
     public List<String> buttonColors;
-
-    #endregion
-
-    #region PROPERTIES
 
     #endregion
 
     #region MONOBEHAVIOUR
 
-    private void onEnable() {
-
-    }
-
-    private void Awake() {
-
-    }
-
     // Start is called before the first frame update
     void Start() {
-        GameManager._instance.initPlayerData();
-        reroll();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        // endGame();
+        GameManager.Instance.InitPlayerData();
+        Reroll();
     }
 
     private void FixedUpdate() {
-        TimeData.text =  GameManager._instance.player.TotalTime.ToString().Split('.')[0];
-        HealthData.text = GameManager._instance.player.health.ToString();
-        ScoreData.text = GameManager._instance.player.score.ToString();
+        timeData.text = GameManager.Instance.PlayerTime.ToString().Split('.')[0];
+        healthData.text = GameManager.Instance.PlayerHealth.ToString();
+        scoreData.text = GameManager.Instance.PlayerScore.ToString();
     }
 
     #endregion
 
     #region FUNCTIONS
 
-    [Button("TestColour")]
-    private void testColour() {
-        string randColour = randomColour();
+    /// <summary>
+    /// Changes the Stroop text objects text
+    /// </summary>
+    [ButtonGroup(TestString)]
+    [Button("Test Stroop Text")]
+    private void ChangeStroopColour() {
+        string randColour = RandomColour();
 
-        if ( TestObject.text == randColour )
-            testColour();
+        if ( testObject.text == randColour )
+            ChangeStroopColour();
 
-        TestObject.text = randomColour();
-        testText = TestObject.text;
+        testObject.text = RandomColour();
+        stroopText = testObject.text;
 
+        // Set stroop Colour
+        int c = UnityEngine.Random.Range(0, textColour.Count);
+        Color stroopCol = textColour[c];
+        stroopCol.a = 1;
+        testObject.color = stroopCol;
     }
 
-    [Button("TestButtons")]
-    private void testButton() {
-        // Clear the button text
-       // buttonColors.Clear();
-        foreach ( var button in PlayerButtons ) {
+    /// <summary>
+    /// Sets the text and colours for the buttons that the player selects
+    /// </summary>
+    [ButtonGroup(TestString)]
+    [Button("Test Player Buttons")]
+    private void SetPlayerButtons() {
+        // Clear player button text 
+        buttonColors.Clear();
+        foreach ( var button in playerButtons ) {
             button.GetComponentInChildren<Text>().text = "";
-            // button.GetComponentInChildren<Text>().color = Color.white;
         }
+        
+        // Set correct stroop test text on a button
+        int r = UnityEngine.Random.Range(0, playerButtons.Count);
+        playerButtons[r].GetComponentInChildren<Text>().text = stroopText;
+        buttonColors.Add(stroopText);
 
-        // Set Stroop Colour
-        int r = UnityEngine.Random.Range(0, PlayerButtons.Count);
-        int c = UnityEngine.Random.Range(0, textColour.Count);
-        Color testCol = textColour[c];
-        testCol.a = 1;
-        TestObject.color = testCol;
-        PlayerButtons[r].GetComponentInChildren<Text>().text = testText;
-        // PlayerButtons[r].GetComponentInChildren<Image>().color = testCol;
-        buttonColors.Add(testText);
-
-        // set button coloursText text
-        // TODO - Change the color of the text and image of the buttons
-        foreach ( var button in PlayerButtons ) {
-            String randCol = randomColour(testText);
-            c = UnityEngine.Random.Range(0, textColour.Count);
-            testCol = textColour[c];
-            testCol.a = 1;
-            //  button.GetComponentInChildren<Image>().color = testCol;
-            // button.GetComponentInChildren<Text>().color = testCol;
+        // set player button text colour
+        foreach ( var button in playerButtons ) {
+            String randCol = RandomColour(stroopText);
+            int c = UnityEngine.Random.Range(1, textColour.Count);
+            Color randColour = textColour[c];
+            randColour.a = 1;
             if ( button.GetComponentInChildren<Text>().text == "" ) {
                 buttonColors.Add(randCol);
                 button.GetComponentInChildren<Text>().text = randCol;
-                // button.GetComponentInChildren<Text>().color = testCol;
-                // button.GetComponentInChildren<Image>().color = testCol;
+                button.GetComponentInChildren<Text>().color = randColour;
             }
         }
-
     }
 
-
     /// <summary>
-    /// Return a random colour
+    /// Return a random colour from the 
     /// </summary>
     /// <returns></returns>
-    String randomColour() {
+    String RandomColour() {
         int r = UnityEngine.Random.Range(0, coloursText.Count);
         return coloursText[r];
     }
@@ -144,7 +146,7 @@ public class GamePlay : MonoBehaviour
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
-    String randomColour(String exclude) {
+    String RandomColour(String exclude) {
         int r = UnityEngine.Random.Range(0, coloursText.Count);
         String randCol = coloursText[r];
 
@@ -152,56 +154,59 @@ public class GamePlay : MonoBehaviour
             return randCol;
         }
 
-        return randomColour(exclude);
+        return RandomColour(exclude);
     }
 
     /// <summary>
     /// Refresh Stroop object and buttons
     /// </summary>
-    private void reroll() {
-        selectedColour = null;
+    private void Reroll() {
+        _selectedColour = null;
         buttonColors.Clear();
-        testColour();
-        testButton();
+        ChangeStroopColour();
+        SetPlayerButtons();
     }
 
-    public bool compareSelectedColour() {
-        if ( selectedColour == testText ) {
+    /// <summary>
+    /// Compares the player selected text with the text from the stroop test object
+    /// </summary>
+    /// <returns></returns>
+    public bool CompareSelectedColour() {
+        if ( _selectedColour == stroopText ) {
             Debug.Log("Correct");
-            SoundManager._instance.playSound();
-            GameManager._instance.player.score += 10;
-            reroll();
+            SoundManager.Instance.PlaySound();
+            GameManager.Instance.PlayerScore+= 10;
+            Reroll();
             return true;
         }
 
         Debug.Log("Incorrect");
-        SoundManager._instance.playSound(SoundManager.soundSelection.wrongSelection);
-        GameManager._instance.player.health -= 5;
-        GameManager._instance.player.score -= 20;
-        reroll();
+        SoundManager.Instance.PlaySound(SoundManager.SoundSelection.WrongSelection);
+        GameManager.Instance.PlayerHealth -= 5;
+        GameManager.Instance.PlayerScore -= 20;
+        Reroll();
         return false;
     }
 
-    void endGame() {
-        if ( GameManager._instance.player.health <= 0 )
-            GameManager._instance.transitionToState(GameManager.GameState.PostGame);
-    }
-
-    #endregion
-
-    #region BUTTONS
-
     /// <summary>
-    /// Sets colour text onto button components
+    /// Ends the game if the players health is 0
+    /// Moves the game state to the Post Game screen
+    /// </summary>
+    void EndGame() {
+        if ( GameManager.Instance.PlayerHealth <= 0 )
+            GameManager.Instance.TransitionToState(GameManager.GameState.PostGame);
+    }
+    
+    /// <summary>
+    /// Player button event that sets the players colour according to the button
+    /// they have selected
     /// </summary>
     /// <param name="t"></param>
-    public void setSelectedColour(GameObject t) {
-        selectedColour = t.GetComponentInChildren<Text>().text;
-        compareSelectedColour();
-        endGame();
+    public void SetSelectedColour(GameObject t) {
+        _selectedColour = t.GetComponentInChildren<Text>().text;
+        CompareSelectedColour();
+        EndGame();
     }
-
-
 
     #endregion
 

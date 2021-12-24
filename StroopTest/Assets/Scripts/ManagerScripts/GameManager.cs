@@ -184,8 +184,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void InitPlayerData() {
         Instance.PlayerHealth = 15;
-        Instance.player.Score = 0;
-        Instance.player.TotalTime = 0;
+        Instance.PlayerScore = 0;
+        Instance.PlayerTime = 0;
     }
 
     /// <summary>

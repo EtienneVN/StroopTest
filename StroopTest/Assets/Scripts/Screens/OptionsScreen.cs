@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/* TODO - Create Options settings 
-* mute sounds = 0% sound, SoundManager active = false
-* sound volume slider
-*/
-
+/// <summary>
+/// 
+/// </summary>
 public class OptionsScreen : MonoBehaviour
 {
+    [Tooltip("Reference to the resume button")]
     public GameObject resumeButton;
 
     private void OnEnable() {
@@ -18,7 +17,7 @@ public class OptionsScreen : MonoBehaviour
     }
 
     private void Update() {
-        if ( GameManager._instance.previousState == GameManager.GameState.GAMEPLAY ) {
+        if ( GameManager.Instance.previousState == GameManager.GameState.Gameplay ) {
             resumeButton.SetActive(true);
         }
     }

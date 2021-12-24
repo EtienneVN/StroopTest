@@ -4,24 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// InterfaceManager:
-/// this class is responsible for all of the navigation buttons,
-///  
+/// this class is responsible for all of the button navigation of the project
 /// </summary>
 public class InterfaceManager : MonoBehaviour
 {
     private static InterfaceManager _instance;
+
+    #region MONOBEHAVIOUR
 
     private void Awake() {
         _instance = this;
         DontDestroyOnLoad(this);
     }
 
+    #endregion
+
+    /// <summary>
+    /// Button event to start the game
+    /// </summary>
     public void StartGame() {
-        GameManager._instance.transitionToState(GameManager.GameState.GAMEPLAY);
-        GameManager._instance.initPlayerData();
+        GameManager.Instance.TransitionToState(GameManager.GameState.Gameplay);
+        GameManager.Instance.InitPlayerData();
     }
 
+    /// <summary>
+    /// Button event for exiting the game
+    /// </summary>
     public void QuitProgram() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -29,29 +37,47 @@ public class InterfaceManager : MonoBehaviour
          Application.Quit();
          #endif
     }
-    
-    public void resumeGame() {
-        GameManager._instance.Pause.SetActive(false);
-        GameManager._instance.transitionToState(GameManager.GameState.GAMEPLAY);
+
+    /// <summary>
+    /// Button event to resume the game from the pause menu
+    /// </summary>
+    public void ResumeGame() {
+        GameManager.Instance.pause.SetActive(false);
+        GameManager.Instance.TransitionToState(GameManager.GameState.Gameplay);
     }
-    
+
+    /// <summary>
+    /// Button event to transition to the options menu
+    /// </summary>
     public void OptionMenu() {
-        GameManager._instance.transitionToState(GameManager.GameState.OPTIONS);
+        GameManager.Instance.TransitionToState(GameManager.GameState.Options);
     }
 
-    public void pauseMenu() {
-        GameManager._instance.transitionToState(GameManager.GameState.PAUSE);
+    /// <summary>
+    /// Button event to transition to the pause menu
+    /// </summary>
+    public void PauseMenu() {
+        GameManager.Instance.TransitionToState(GameManager.GameState.Pause);
     }
-
+    
+    /// <summary>
+    /// Button event to transition to the title menu 
+    /// </summary>
     public void TitleMenu() {
-        GameManager._instance.transitionToState(GameManager.GameState.TITLE);
+        GameManager.Instance.TransitionToState(GameManager.GameState.Title);
     }
 
+    /// <summary>
+    /// Button event to transition to the post game screen
+    /// </summary>
     public void PostGame() {
-        GameManager._instance.transitionToState(GameManager.GameState.PostGame);
+        GameManager.Instance.TransitionToState(GameManager.GameState.PostGame);
     }
 
+    /// <summary>
+    /// Button event to return to the previous menu
+    /// </summary>
     public void BackButton() {
-        GameManager._instance.transitionToState(GameManager._instance.previousState);
+        GameManager.Instance.TransitionToState(GameManager.Instance.previousState);
     }
 }

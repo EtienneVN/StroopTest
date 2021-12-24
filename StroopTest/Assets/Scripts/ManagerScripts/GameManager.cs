@@ -123,7 +123,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region PUBLIC PROPERTIES
-
     public int PlayerHealth { get => player.Health; set => player.Health = value; }
     public int PlayerScore { get => player.Score; set => player.Score = value; }
     public float PlayerTime { get => player.TotalTime; set => player.TotalTime = value; }

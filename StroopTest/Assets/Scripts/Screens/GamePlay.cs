@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Resposible for all the script that is run during the gameplay of the game
+/// Responsible for all the script that is run during the gameplay of the game
 /// </summary>
 public class GamePlay : MonoBehaviour
 {
@@ -22,6 +22,8 @@ public class GamePlay : MonoBehaviour
     /// used to compare the color selected by the player
     /// </summary>
     private string _selectedColour;
+    private int streak = 0;
+    private float CountDownFormula;
 
     #endregion
 
@@ -44,6 +46,8 @@ public class GamePlay : MonoBehaviour
     public TextMeshProUGUI testObject;
     [Tooltip("List of button objects for the player buttons")]
     public List<GameObject> playerButtons;
+    [Tooltip("Timer for player to choose colour")]
+    public TextMeshProUGUI Countdown;
 
     [Space(5)]
     [Header("GAMEPLAY COLOUR SETTINGS")]
@@ -66,11 +70,17 @@ public class GamePlay : MonoBehaviour
         GameManager.Instance.InitPlayerData();
         Reroll();
     }
+    private void Update() {
+
+    }
 
     private void FixedUpdate() {
         timeData.text = GameManager.Instance.PlayerTime.ToString().Split('.')[0];
         healthData.text = GameManager.Instance.PlayerHealth.ToString();
         scoreData.text = GameManager.Instance.PlayerScore.ToString();
+        Countdown.text = GameManager.Instance.PlayerCountdown.ToString().Split('.')[0];
+        checkCountdown();
+        EndGame();
     }
 
     #endregion
@@ -109,7 +119,7 @@ public class GamePlay : MonoBehaviour
         foreach ( var button in playerButtons ) {
             button.GetComponentInChildren<Text>().text = "";
         }
-        
+
         // Set correct stroop test text on a button
         int r = UnityEngine.Random.Range(0, playerButtons.Count);
         playerButtons[r].GetComponentInChildren<Text>().text = stroopText;
@@ -127,6 +137,33 @@ public class GamePlay : MonoBehaviour
                 button.GetComponentInChildren<Text>().color = randColour;
             }
         }
+    }
+
+    /// <summary>
+    /// Reduce player health if the countdown timer runs out of time
+    /// </summary>
+    private void checkCountdown() {
+        // Punish player if timer runs out
+        if ( GameManager.Instance.PlayerCountdown <= 0 ) {
+            GameManager.Instance.PlayerHealth -= 5;
+            SoundManager.Instance.PlaySound(SoundManager.SoundSelection.WrongSelection);
+            streak = 0;
+            Reroll();
+        }
+    }
+
+    /// <summary>
+    /// Reset the countdown timer
+    /// </summary>
+    private void resetCountdown() {
+        float t = 100 % GameManager.Instance.PlayerTime > 0 ? t = 100 % GameManager.Instance.PlayerTime : t = 5f;  
+        CountDownFormula = ( 5 -  t ) + streak;
+        if ( CountDownFormula > 3 )
+            GameManager.Instance.PlayerCountdown = CountDownFormula;
+        else {
+            GameManager.Instance.PlayerCountdown = 5f + streak;
+        }
+
     }
 
     /// <summary>
@@ -158,6 +195,7 @@ public class GamePlay : MonoBehaviour
     /// Refresh Stroop object and buttons
     /// </summary>
     private void Reroll() {
+        resetCountdown();
         _selectedColour = null;
         buttonColors.Clear();
         ChangeStroopColour();
@@ -171,14 +209,16 @@ public class GamePlay : MonoBehaviour
     public bool CompareSelectedColour() {
         if ( _selectedColour == stroopText ) {
             Debug.Log("Correct");
+            streak++;
             SoundManager.Instance.PlaySound();
-            GameManager.Instance.PlayerScore+= 10;
+            GameManager.Instance.PlayerScore += 10;
             Reroll();
             return true;
         }
 
         Debug.Log("Incorrect");
         SoundManager.Instance.PlaySound(SoundManager.SoundSelection.WrongSelection);
+        streak = 0;
         GameManager.Instance.PlayerHealth -= 5;
         GameManager.Instance.PlayerScore -= 20;
         Reroll();
@@ -193,7 +233,7 @@ public class GamePlay : MonoBehaviour
         if ( GameManager.Instance.PlayerHealth <= 0 )
             GameManager.Instance.TransitionToState(GameManager.GameState.PostGame);
     }
-    
+
     /// <summary>
     /// Player button event that sets the players colour according to the button
     /// they have selected

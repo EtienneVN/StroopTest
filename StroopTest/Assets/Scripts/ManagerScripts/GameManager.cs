@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         public int Health;
         public int Score;
         public float TotalTime;
+        public float Countdown;
     }
 
     #endregion
@@ -104,7 +105,8 @@ public class GameManager : MonoBehaviour
             case GameState.Gameplay:
                 ClearScreen();
                 gamePlay.SetActive(true);
-                player.TotalTime += Time.deltaTime;
+                PlayerTime += Time.deltaTime;
+                PlayerCountdown -= Time.deltaTime;
                 break;
             case GameState.Pause:
                 pause.SetActive(true);
@@ -126,7 +128,7 @@ public class GameManager : MonoBehaviour
     public int PlayerHealth { get => player.Health; set => player.Health = value; }
     public int PlayerScore { get => player.Score; set => player.Score = value; }
     public float PlayerTime { get => player.TotalTime; set => player.TotalTime = value; }
-    
+    public float PlayerCountdown { get => player.Countdown; set => player.Countdown = value; }
     #endregion
 
     #region FUNCTIONS
@@ -170,7 +172,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Funcion used to transition to a new state
     /// </summary>
     /// <param name="state"></param>
     public void TransitionToState(GameState state) {
@@ -180,12 +182,13 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Funtion used to initialise the players base data
+    /// Function used to initialise the players base data
     /// </summary>
     public void InitPlayerData() {
-        Instance.PlayerHealth = 15;
-        Instance.PlayerScore = 0;
-        Instance.PlayerTime = 0;
+        PlayerHealth = 15;
+        PlayerScore = 0;
+        PlayerTime = 1f;
+        PlayerCountdown = 5;
     }
 
     /// <summary>

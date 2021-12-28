@@ -5,7 +5,7 @@
 ---
 
 ### Implement GameManager 
-> - [x] : implement GameState Management
+> - [x] : implement GameState management
 > - [x] : Implement player data
 
 ### Implement SoundManager
@@ -13,6 +13,12 @@
 > - [x] : Import AudioClips
 > - [x] : Implement sounds on player interactions
 > - [x] : implement sounds on GameState transitions
+
+### Implement InterfaceManager
+> - [x] : Implement TitleScreen transition
+> - [x] : Implement Options menu transition
+> - [x] : Implement GamePlay transition
+> - [x] : Implement Postgame transition
 
 ---
 ## USER INTERFACE
@@ -26,6 +32,8 @@
 ### Implement Options Screen 
 > - [x] : implement Mute toggle
 > - [x] : implement Volume control
+> - [x] : implement resume button
+> - [x] : Implement return to title button
 
 ### implement GamePlay Screen 
 > - [x] : Implement Stroop Object colour change
@@ -40,6 +48,8 @@
 ## Implement Pause Screen 
 > - [x] : Implement resume button
 > - [x] : Implement quit button
+> - [x] : Show player score data
+> - [x] : show player time data
 
 ## Implement PostGame Screen
 > - [x] : implement retry button

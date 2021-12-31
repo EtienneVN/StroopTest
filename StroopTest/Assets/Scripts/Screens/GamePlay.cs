@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 /// <summary>
 /// Responsible for all the script that is run during the gameplay of the game
@@ -11,6 +12,12 @@ using UnityEngine.UI;
 public class GamePlay : MonoBehaviour
 {
     #region CONSTRUCTORS
+
+    public struct ColourString
+    {
+        public string col_name;
+        public Color col_value;
+    }
 
     #endregion
 
@@ -24,13 +31,14 @@ public class GamePlay : MonoBehaviour
     private string _selectedColour;
     private int streak = 0;
     private float CountDownFormula;
-
+    private String stroopText;
+    private Color stroopColour;
     #endregion
 
     #region PUBLIC MEMBERS
 
-    [Tooltip("")]
-    public String stroopText;
+    [Tooltip("Gameplay object that the player is tested on")]
+    public ColourString stroopObj;
 
     [Space]
     [Header("TOPBAR OBJECTS")]
@@ -45,16 +53,15 @@ public class GamePlay : MonoBehaviour
     [Tooltip("Text object for the stroop test")]
     public TextMeshProUGUI testObject;
     [Tooltip("List of button objects for the player buttons")]
-    public List<GameObject> playerButtons;
+    public Button[] playerButtons;
+    public GameObject PlayerPanel;
     [Tooltip("Timer for player to choose colour")]
     public TextMeshProUGUI Countdown;
 
     [Space(5)]
     [Header("GAMEPLAY COLOUR SETTINGS")]
-    [Tooltip("List strings for the colours")]
-    public List<String> coloursText;
-    [Tooltip("List of colours referencing the text")]
-    public List<Color> textColour;
+    [Tooltip("Colour and text combination text")]
+    public List<ColourString> colourCombinations;
 
     [Space]
     [Header("CURRENT GAMEPLAY COLOURS")]
@@ -65,13 +72,14 @@ public class GamePlay : MonoBehaviour
 
     #region MONOBEHAVIOUR
 
+    private void Awake() {
+        GameManager.Instance.InitPlayerData();
+    }
+
     // Start is called before the first frame update
     void Start() {
-        GameManager.Instance.InitPlayerData();
+        playerButtons = PlayerPanel.GetComponentsInChildren<Button>();
         Reroll();
-    }
-    private void Update() {
-
     }
 
     private void FixedUpdate() {
@@ -93,19 +101,21 @@ public class GamePlay : MonoBehaviour
     [ButtonGroup(TestString)]
     [Button("Test Stroop Text")]
     private void ChangeStroopColour() {
-        string randColour = RandomColour();
+        string randColour = RandomColourString();
 
         if ( testObject.text == randColour )
             ChangeStroopColour();
 
-        testObject.text = RandomColour();
+        testObject.text = RandomColourString();
         stroopText = testObject.text;
 
         // Set stroop Colour
-        int c = UnityEngine.Random.Range(0, textColour.Count);
-        Color stroopCol = textColour[c];
-        stroopCol.a = 1;
-        testObject.color = stroopCol;
+        int c = UnityEngine.Random.Range(0, colourCombinations.Count);
+        stroopObj = colourCombinations[c];
+        stroopText = stroopObj.col_name;
+        stroopColour = stroopObj.col_value;
+        stroopColour.a = 1;
+        testObject.color = stroopColour;
     }
 
     /// <summary>
@@ -117,24 +127,24 @@ public class GamePlay : MonoBehaviour
         // Clear player button text 
         buttonColors.Clear();
         foreach ( var button in playerButtons ) {
-            button.GetComponentInChildren<Text>().text = "";
+            button.GetComponentInChildren<TextMeshProUGUI>().text = "";
         }
 
         // Set correct stroop test text on a button
-        int r = UnityEngine.Random.Range(0, playerButtons.Count);
-        playerButtons[r].GetComponentInChildren<Text>().text = stroopText;
+        int r = UnityEngine.Random.Range(0, playerButtons.Length - 1);
+        playerButtons[r].GetComponentInChildren<TextMeshProUGUI>().text = stroopText;
         buttonColors.Add(stroopText);
 
         // set player button text colour
         foreach ( var button in playerButtons ) {
-            String randCol = RandomColour(stroopText);
-            int c = UnityEngine.Random.Range(1, textColour.Count);
-            Color randColour = textColour[c];
+            String randCol = RandomColourString(stroopText);
+            int c = UnityEngine.Random.Range(1, colourCombinations.Count - 1);
+            Color randColour = colourCombinations[c].col_value;
             randColour.a = 1;
-            if ( button.GetComponentInChildren<Text>().text == "" ) {
+            if ( button.GetComponentInChildren<TextMeshProUGUI>().text == "" ) {
                 buttonColors.Add(randCol);
-                button.GetComponentInChildren<Text>().text = randCol;
-                button.GetComponentInChildren<Text>().color = randColour;
+                button.GetComponentInChildren<TextMeshProUGUI>().text = randCol;
+                button.GetComponentInChildren<TextMeshProUGUI>().color = randColour;
             }
         }
     }
@@ -156,8 +166,8 @@ public class GamePlay : MonoBehaviour
     /// Reset the countdown timer
     /// </summary>
     private void resetCountdown() {
-        float t = 100 % GameManager.Instance.PlayerTime > 0 ? t = 100 % GameManager.Instance.PlayerTime : t = 5f;  
-        CountDownFormula = ( 5 -  t ) + streak;
+        float t = 100 % GameManager.Instance.PlayerTime > 0 ? t = 100 % GameManager.Instance.PlayerTime : t = 5f;
+        CountDownFormula = ( 5 - t ) + streak;
         if ( CountDownFormula > 3 )
             GameManager.Instance.PlayerCountdown = CountDownFormula;
         else {
@@ -167,12 +177,21 @@ public class GamePlay : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    ColourString RandomColourObj() {
+        int r = UnityEngine.Random.Range(0, colourCombinations.Count - 1);
+        return colourCombinations[r];
+    }
+
+    /// <summary>
     /// Return a random colour from the 
     /// </summary>
     /// <returns></returns>
-    String RandomColour() {
-        int r = UnityEngine.Random.Range(0, coloursText.Count);
-        return coloursText[r];
+    String RandomColourString() {
+        int r = UnityEngine.Random.Range(0, colourCombinations.Count - 1);
+        return colourCombinations[r].col_name;
     }
 
     /// <summary>
@@ -180,15 +199,15 @@ public class GamePlay : MonoBehaviour
     /// </summary>
     /// <param name="s"></param>
     /// <returns></returns>
-    String RandomColour(String exclude) {
-        int r = UnityEngine.Random.Range(0, coloursText.Count);
-        String randCol = coloursText[r];
+    String RandomColourString(String exclude) {
+        int r = UnityEngine.Random.Range(0, colourCombinations.Count - 1);
+        String randCol = colourCombinations[r].col_name;
 
         if ( !buttonColors.Contains(randCol) ) {
             return randCol;
         }
 
-        return RandomColour(exclude);
+        return RandomColourString(exclude);
     }
 
     /// <summary>
@@ -207,7 +226,7 @@ public class GamePlay : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public bool CompareSelectedColour() {
-        if ( _selectedColour == stroopText ) {
+        if ( _selectedColour == stroopObj.col_name ) {
             Debug.Log("Correct");
             streak++;
             SoundManager.Instance.PlaySound();
@@ -240,7 +259,7 @@ public class GamePlay : MonoBehaviour
     /// </summary>
     /// <param name="t"></param>
     public void SetSelectedColour(GameObject t) {
-        _selectedColour = t.GetComponentInChildren<Text>().text;
+        _selectedColour = t.GetComponentInChildren<TextMeshProUGUI>().text;
         CompareSelectedColour();
         EndGame();
     }

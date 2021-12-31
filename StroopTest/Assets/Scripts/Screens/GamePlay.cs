@@ -9,7 +9,7 @@ using Random = System.Random;
 /// <summary>
 /// Responsible for all the script that is run during the gameplay of the game
 /// </summary>
-public class GamePlay : MonoBehaviour
+public class GamePlay : SerializedMonoBehaviour
 {
     #region CONSTRUCTORS
 
@@ -24,15 +24,12 @@ public class GamePlay : MonoBehaviour
     #region PRIVATE MEMBERS
 
     private const string TestString = "Test Buttons";
-
-    /// <summary>
-    /// used to compare the color selected by the player
-    /// </summary>
     private string _selectedColour;
     private int streak = 0;
     private float CountDownFormula;
     private String stroopText;
     private Color stroopColour;
+
     #endregion
 
     #region PUBLIC MEMBERS
@@ -63,6 +60,10 @@ public class GamePlay : MonoBehaviour
     [Tooltip("Colour and text combination text")]
     public List<ColourString> colourCombinations;
 
+    [Space(10)]
+    [Header("GAMEPLAY ROUND")]
+    public int currentRound;
+
     [Space]
     [Header("CURRENT GAMEPLAY COLOURS")]
     [Tooltip("Color text given to buttons during current gameplay")]
@@ -79,6 +80,7 @@ public class GamePlay : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         playerButtons = PlayerPanel.GetComponentsInChildren<Button>();
+        currentRound = GameManager.Instance.GameRounds;
         Reroll();
     }
 
@@ -214,6 +216,8 @@ public class GamePlay : MonoBehaviour
     /// Refresh Stroop object and buttons
     /// </summary>
     private void Reroll() {
+        GameManager.Instance.PlayerRounds++;
+        currentRound--;
         resetCountdown();
         _selectedColour = null;
         buttonColors.Clear();
@@ -249,8 +253,10 @@ public class GamePlay : MonoBehaviour
     /// Moves the game state to the Post Game screen
     /// </summary>
     void EndGame() {
-        if ( GameManager.Instance.PlayerHealth <= 0 )
+        if ( GameManager.Instance.PlayerHealth <= 0 || currentRound <= 0 ) {
+            currentRound = GameManager.Instance.GameRounds;
             GameManager.Instance.TransitionToState(GameManager.GameState.PostGame);
+        }
     }
 
     /// <summary>

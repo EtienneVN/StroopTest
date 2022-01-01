@@ -9,7 +9,7 @@ using Random = System.Random;
 /// <summary>
 /// Responsible for all the script that is run during the gameplay of the game
 /// </summary>
-public class GamePlay : MonoBehaviour
+public class GamePlay : SerializedMonoBehaviour
 {
     #region CONSTRUCTORS
 
@@ -33,6 +33,7 @@ public class GamePlay : MonoBehaviour
     private float CountDownFormula;
     private String stroopText;
     private Color stroopColour;
+
     #endregion
 
     #region PUBLIC MEMBERS
@@ -214,6 +215,8 @@ public class GamePlay : MonoBehaviour
     /// Refresh Stroop object and buttons
     /// </summary>
     private void Reroll() {
+        GameManager.Instance.PlayerRounds++;
+        GameManager.Instance.currentRound++;
         resetCountdown();
         _selectedColour = null;
         buttonColors.Clear();
@@ -249,8 +252,10 @@ public class GamePlay : MonoBehaviour
     /// Moves the game state to the Post Game screen
     /// </summary>
     void EndGame() {
-        if ( GameManager.Instance.PlayerHealth <= 0 )
+        if ( GameManager.Instance.PlayerHealth <= 0 || GameManager.Instance.currentRound >= GameManager.Instance.TotalRounds ) {
             GameManager.Instance.TransitionToState(GameManager.GameState.PostGame);
+            GameManager.Instance.PlayerRounds = GameManager.Instance.currentRound;
+        }
     }
 
     /// <summary>

@@ -8,7 +8,7 @@ using UnityEngine;
 /// <summary>
 /// Responsible for the games state and player data
 /// </summary>
-public class GameManager : MonoBehaviour
+public class GameManager : SerializedMonoBehaviour
 {
     public static GameManager Instance;
 
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         public int Score;
         public float TotalTime;
         public float Countdown;
+        public int RoundsReached;
     }
 
     #endregion
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
     #region PRIVATE MEMBERS
 
     private int _stateNum = 1;
-    private const string TestString = "Test Buttons"; 
+    private const string TestString = "Test Buttons";
 
     #endregion
 
@@ -59,7 +60,12 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("PLAYER OBJECT")]
     [Tooltip("Object for the player")]
-    [SerializeField] private Player player;
+    private Player player;
+
+    [Space]
+    [Header("RUNTIME")]
+    public int TotalRounds = 5;
+    public int currentRound = 0;
 
     [Header("SCREEN OBJECTS")]
     [Tooltip("GameObject for the title screen")]
@@ -125,13 +131,17 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region PUBLIC PROPERTIES
+
     public int PlayerHealth { get => player.Health; set => player.Health = value; }
     public int PlayerScore { get => player.Score; set => player.Score = value; }
     public float PlayerTime { get => player.TotalTime; set => player.TotalTime = value; }
     public float PlayerCountdown { get => player.Countdown; set => player.Countdown = value; }
+    public int PlayerRounds { get => player.RoundsReached; set => player.RoundsReached = value; }
+
     #endregion
 
     #region FUNCTIONS
+
     /// <summary>
     /// This function is run at the start of the game/program
     /// </summary>
@@ -172,7 +182,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Funcion used to transition to a new state
+    /// Function used to transition to a new state
     /// </summary>
     /// <param name="state"></param>
     public void TransitionToState(GameState state) {
@@ -189,6 +199,8 @@ public class GameManager : MonoBehaviour
         PlayerScore = 0;
         PlayerTime = 1f;
         PlayerCountdown = 5;
+        PlayerRounds = 0;
+        currentRound = 0;
     }
 
     /// <summary>

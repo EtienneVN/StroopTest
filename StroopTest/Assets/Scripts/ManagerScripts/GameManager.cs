@@ -27,11 +27,7 @@ public class GameManager : SerializedMonoBehaviour
         public int Score;
         public float TotalTime;
         public float Countdown;
-<<<<<<< HEAD
-        public int roundsreached;
-=======
         public int RoundsReached;
->>>>>>> 487daf8d6877d38d990d13a43b26b9ecbfa44675
     }
 
     #endregion
@@ -145,11 +141,7 @@ public class GameManager : SerializedMonoBehaviour
     public int PlayerScore { get => player.Score; set => player.Score = value; }
     public float PlayerTime { get => player.TotalTime; set => player.TotalTime = value; }
     public float PlayerCountdown { get => player.Countdown; set => player.Countdown = value; }
-<<<<<<< HEAD
-    public int PlayerRounds { get => player.roundsreached; set => player.roundsreached = value; }
-=======
     public int PlayerRounds { get => player.RoundsReached; set => player.RoundsReached = value; }
->>>>>>> 487daf8d6877d38d990d13a43b26b9ecbfa44675
 
     #endregion
 
@@ -213,10 +205,8 @@ public class GameManager : SerializedMonoBehaviour
         PlayerTime = 1f;
         PlayerCountdown = 5;
         PlayerRounds = 0;
-<<<<<<< HEAD
-=======
         currentRound = 0;
->>>>>>> 487daf8d6877d38d990d13a43b26b9ecbfa44675
+
     }
 
     /// <summary>

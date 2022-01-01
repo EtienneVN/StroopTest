@@ -10,6 +10,10 @@ public class InterfaceManager : MonoBehaviour
 {
     private static InterfaceManager _instance;
 
+    InterfaceManager() {
+        _instance = this;
+    }
+
     #region MONOBEHAVIOUR
 
     private void Awake() {

@@ -3,16 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Sirenix.OdinInspector;
+using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 /// <summary>
 /// Responsible for the games state and player data
 /// </summary>
-public class GameManager : MonoBehaviour
+public class GameManager : SerializedMonoBehaviour
 {
     public static GameManager Instance;
 
     #region CONSTRUCTORS
+
+    GameManager() {
+        Instance = this;
+    }
 
     #endregion
 
@@ -27,7 +33,11 @@ public class GameManager : MonoBehaviour
         public int Score;
         public float TotalTime;
         public float Countdown;
+<<<<<<< HEAD
         public int roundsreached;
+=======
+        public int RoundsReached;
+>>>>>>> 487daf8d6877d38d990d13a43b26b9ecbfa44675
     }
 
     #endregion
@@ -60,7 +70,12 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("PLAYER OBJECT")]
     [Tooltip("Object for the player")]
-    [SerializeField] private Player player;
+    private Player player;
+
+    [Space]
+    [Header("RUNTIME")]
+    public int TotalRounds = 5;
+    public int currentRound = 0;
 
     [Header("SCREEN OBJECTS")]
     [Tooltip("GameObject for the title screen")]
@@ -136,7 +151,11 @@ public class GameManager : MonoBehaviour
     public int PlayerScore { get => player.Score; set => player.Score = value; }
     public float PlayerTime { get => player.TotalTime; set => player.TotalTime = value; }
     public float PlayerCountdown { get => player.Countdown; set => player.Countdown = value; }
+<<<<<<< HEAD
     public int PlayerRounds { get => player.roundsreached; set => player.roundsreached = value; }
+=======
+    public int PlayerRounds { get => player.RoundsReached; set => player.RoundsReached = value; }
+>>>>>>> 487daf8d6877d38d990d13a43b26b9ecbfa44675
 
     #endregion
 
@@ -200,6 +219,10 @@ public class GameManager : MonoBehaviour
         PlayerTime = 1f;
         PlayerCountdown = 5;
         PlayerRounds = 0;
+<<<<<<< HEAD
+=======
+        currentRound = 0;
+>>>>>>> 487daf8d6877d38d990d13a43b26b9ecbfa44675
     }
 
     /// <summary>

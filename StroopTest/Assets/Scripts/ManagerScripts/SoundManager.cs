@@ -24,6 +24,10 @@ public class SoundManager : MonoBehaviour
     #endregion
 
     #region PUBLIC MEMBERS
+
+    SoundManager() {
+        Instance = this;
+    }
     
     /// <summary>
     /// An enumerable for the sounds available within the game

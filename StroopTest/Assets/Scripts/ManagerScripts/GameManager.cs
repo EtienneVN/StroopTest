@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Sirenix.OdinInspector;
+using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 /// <summary>
@@ -13,6 +15,10 @@ public class GameManager : SerializedMonoBehaviour
     public static GameManager Instance;
 
     #region CONSTRUCTORS
+
+    GameManager() {
+        Instance = this;
+    }
 
     #endregion
 

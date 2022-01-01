@@ -4,7 +4,6 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = System.Random;
 
 /// <summary>
 /// Responsible for all the script that is run during the gameplay of the game
@@ -13,6 +12,9 @@ public class GamePlay : SerializedMonoBehaviour
 {
     #region CONSTRUCTORS
 
+    /// <summary>
+    /// An object that keeps a colour and its text representation
+    /// </summary>
     public struct ColourString
     {
         public string col_name;
@@ -176,16 +178,7 @@ public class GamePlay : SerializedMonoBehaviour
         }
 
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    ColourString RandomColourObj() {
-        int r = UnityEngine.Random.Range(0, colourCombinations.Count - 1);
-        return colourCombinations[r];
-    }
-
+    
     /// <summary>
     /// Return a random colour from the 
     /// </summary>

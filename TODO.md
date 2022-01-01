@@ -8,6 +8,7 @@
 > - [x] : implement GameState management
 > - [x] : Implement player data
 > - [x] : Implement game total rounds
+> - [x] : Implement game current rounds
 
 ### Implement SoundManager
 > - [x] : Create SoundLibrary

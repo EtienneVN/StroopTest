@@ -7,6 +7,7 @@
 ### Implement GameManager 
 > - [x] : implement GameState management
 > - [x] : Implement player data
+> - [x] : Implement game total rounds
 
 ### Implement SoundManager
 > - [x] : Create SoundLibrary
@@ -53,7 +54,10 @@
 
 ## Implement PostGame Screen
 > - [x] : implement retry button
-> - [x] : Implement return to title button 
+> - [x] : Implement return to title button
+> - [x] : Implement player score data
+> - [x] : Implement player time data
+> - [x] : Implement player rounds data 
 
 ---
 ## BUILDS

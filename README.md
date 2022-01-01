@@ -14,6 +14,10 @@
 ## Project files
 <p> This folder contains the Unity Project files </p>
 
+- This project has two branches:
+  > - Main: Project configured for PC build
+  > - Android: Project configured for Android build 
+
 ## Builds
 <p> This folder contains the platform builds </p>
 

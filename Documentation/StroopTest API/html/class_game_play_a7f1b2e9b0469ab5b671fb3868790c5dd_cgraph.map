@@ -1,0 +1,6 @@
+<map id="GamePlay.SetSelectedColour" name="GamePlay.SetSelectedColour">
+<area shape="rect" id="node1" title="Player button event that sets the players colour according to the button they have selected" alt="" coords="5,13,200,39"/>
+<area shape="rect" id="node2" href="$class_game_play.html#ab95035b8e4d043e70c07a0bd315453cd" title="Compares the player selected text with the text from the stroop test object" alt="" coords="248,5,439,47"/>
+<area shape="rect" id="node3" href="$class_sound_manager.html#ada019e45e8e89f3d0e75d694857a3544" title="A button to test the sounds within the inspector" alt="" coords="487,13,663,39"/>
+<area shape="rect" id="node4" href="$class_sound_manager.html#a14305a550837168b2d31e5278bcbe6ac" title="SoundLibrary : Collection of available sounds for the game" alt="" coords="711,13,900,39"/>
+</map>

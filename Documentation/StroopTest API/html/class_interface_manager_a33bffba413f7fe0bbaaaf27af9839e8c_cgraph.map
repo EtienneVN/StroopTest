@@ -1,0 +1,6 @@
+<map id="InterfaceManager.BackButton" name="InterfaceManager.BackButton">
+<area shape="rect" id="node1" title="Button event to return to the previous menu" alt="" coords="5,13,199,39"/>
+<area shape="rect" id="node2" href="$class_game_manager.html#a9c80c2a566478f6691dc14564d57619b" title="Function used to transition to a new state" alt="" coords="247,5,428,47"/>
+<area shape="rect" id="node3" href="$class_sound_manager.html#ada019e45e8e89f3d0e75d694857a3544" title="A button to test the sounds within the inspector" alt="" coords="476,13,652,39"/>
+<area shape="rect" id="node4" href="$class_sound_manager.html#a14305a550837168b2d31e5278bcbe6ac" title="SoundLibrary : Collection of available sounds for the game" alt="" coords="700,13,889,39"/>
+</map>

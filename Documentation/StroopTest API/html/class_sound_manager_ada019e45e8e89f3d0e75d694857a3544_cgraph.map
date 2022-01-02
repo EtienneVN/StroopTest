@@ -1,0 +1,4 @@
+<map id="SoundManager.PlaySound" name="SoundManager.PlaySound">
+<area shape="rect" id="node1" title="A button to test the sounds within the inspector" alt="" coords="5,5,181,32"/>
+<area shape="rect" id="node2" href="$class_sound_manager.html#a14305a550837168b2d31e5278bcbe6ac" title="SoundLibrary : Collection of available sounds for the game" alt="" coords="229,5,419,32"/>
+</map>

@@ -1,0 +1,136 @@
+\hypertarget{class_game_play}{}\doxysection{Game\+Play Class Reference}
+\label{class_game_play}\index{GamePlay@{GamePlay}}
+
+
+Responsible for all the script that is run during the gameplay of the game  
+
+
+
+
+Inheritance diagram for Game\+Play\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{class_game_play__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Game\+Play\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{class_game_play__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_game_play_1_1_colour_string}{Colour\+String}}
+\begin{DoxyCompactList}\small\item\em An object that keeps a colour and its text representation \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_game_play_ab95035b8e4d043e70c07a0bd315453cd}{Compare\+Selected\+Colour}} ()
+\begin{DoxyCompactList}\small\item\em Compares the player selected text with the text from the stroop test object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_play_a7f1b2e9b0469ab5b671fb3868790c5dd}{Set\+Selected\+Colour}} (Game\+Object t)
+\begin{DoxyCompactList}\small\item\em Player button event that sets the players colour according to the button they have selected \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_play_a246b6ab3c682dfc1d89b0e26433bf11b}\label{class_game_play_a246b6ab3c682dfc1d89b0e26433bf11b}} 
+\mbox{\hyperlink{struct_game_play_1_1_colour_string}{Colour\+String}} {\bfseries stroop\+Obj}
+\item 
+\mbox{\Hypertarget{class_game_play_a5474772452e1e16591fef8e29e594030}\label{class_game_play_a5474772452e1e16591fef8e29e594030}} 
+Text\+Mesh\+Pro\+UGUI {\bfseries time\+Data}
+\item 
+\mbox{\Hypertarget{class_game_play_a40cfa8e1bf2229a2b56f470ca3ed0add}\label{class_game_play_a40cfa8e1bf2229a2b56f470ca3ed0add}} 
+Text\+Mesh\+Pro\+UGUI {\bfseries score\+Data}
+\item 
+\mbox{\Hypertarget{class_game_play_a213e5d1752b2d1b9526870e2441bb5c9}\label{class_game_play_a213e5d1752b2d1b9526870e2441bb5c9}} 
+Text\+Mesh\+Pro\+UGUI {\bfseries health\+Data}
+\item 
+\mbox{\Hypertarget{class_game_play_a4a3680b29301ec170b7bf4cd8b4232c6}\label{class_game_play_a4a3680b29301ec170b7bf4cd8b4232c6}} 
+Text\+Mesh\+Pro\+UGUI {\bfseries test\+Object}
+\item 
+\mbox{\Hypertarget{class_game_play_a29f25820c7890df07397c7364d11fbc5}\label{class_game_play_a29f25820c7890df07397c7364d11fbc5}} 
+Button\mbox{[}$\,$\mbox{]} {\bfseries player\+Buttons}
+\item 
+\mbox{\Hypertarget{class_game_play_a7033fbd279c266015c485c5786720193}\label{class_game_play_a7033fbd279c266015c485c5786720193}} 
+Game\+Object {\bfseries Player\+Panel}
+\item 
+\mbox{\Hypertarget{class_game_play_a3565c09781a3c7cab25f043adf146844}\label{class_game_play_a3565c09781a3c7cab25f043adf146844}} 
+Text\+Mesh\+Pro\+UGUI {\bfseries Countdown}
+\item 
+\mbox{\Hypertarget{class_game_play_aa969e795a44456d9bff173c19658865e}\label{class_game_play_aa969e795a44456d9bff173c19658865e}} 
+List$<$ \mbox{\hyperlink{struct_game_play_1_1_colour_string}{Colour\+String}} $>$ {\bfseries colour\+Combinations}
+\item 
+\mbox{\Hypertarget{class_game_play_af549f097082213111f41b016468e0d45}\label{class_game_play_af549f097082213111f41b016468e0d45}} 
+int {\bfseries current\+Round}
+\item 
+\mbox{\Hypertarget{class_game_play_a9f0aabd78ac39260918bb2d90ce38da3}\label{class_game_play_a9f0aabd78ac39260918bb2d90ce38da3}} 
+List$<$ String $>$ {\bfseries button\+Colors}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Responsible for all the script that is run during the gameplay of the game 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_play_ab95035b8e4d043e70c07a0bd315453cd}\label{class_game_play_ab95035b8e4d043e70c07a0bd315453cd}} 
+\index{GamePlay@{GamePlay}!CompareSelectedColour@{CompareSelectedColour}}
+\index{CompareSelectedColour@{CompareSelectedColour}!GamePlay@{GamePlay}}
+\doxysubsubsection{\texorpdfstring{CompareSelectedColour()}{CompareSelectedColour()}}
+{\footnotesize\ttfamily bool Game\+Play.\+Compare\+Selected\+Colour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Compares the player selected text with the text from the stroop test object 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_play_ab95035b8e4d043e70c07a0bd315453cd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_play_ab95035b8e4d043e70c07a0bd315453cd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_game_play_a7f1b2e9b0469ab5b671fb3868790c5dd}\label{class_game_play_a7f1b2e9b0469ab5b671fb3868790c5dd}} 
+\index{GamePlay@{GamePlay}!SetSelectedColour@{SetSelectedColour}}
+\index{SetSelectedColour@{SetSelectedColour}!GamePlay@{GamePlay}}
+\doxysubsubsection{\texorpdfstring{SetSelectedColour()}{SetSelectedColour()}}
+{\footnotesize\ttfamily void Game\+Play.\+Set\+Selected\+Colour (\begin{DoxyParamCaption}\item[{Game\+Object}]{t }\end{DoxyParamCaption})}
+
+
+
+Player button event that sets the players colour according to the button they have selected 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_play_a7f1b2e9b0469ab5b671fb3868790c5dd_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Stroop\+Test/\+Stroop\+Test/\+Stroop\+Test/\+Assets/\+Scripts/\+Screens/Game\+Play.\+cs\end{DoxyCompactItemize}

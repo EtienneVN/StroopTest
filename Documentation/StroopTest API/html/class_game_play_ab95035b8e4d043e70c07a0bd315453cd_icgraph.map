@@ -1,0 +1,4 @@
+<map id="GamePlay.CompareSelectedColour" name="GamePlay.CompareSelectedColour">
+<area shape="rect" id="node1" title="Compares the player selected text with the text from the stroop test object" alt="" coords="248,5,439,47"/>
+<area shape="rect" id="node2" href="$class_game_play.html#a7f1b2e9b0469ab5b671fb3868790c5dd" title="Player button event that sets the players colour according to the button they have selected" alt="" coords="5,13,200,39"/>
+</map>

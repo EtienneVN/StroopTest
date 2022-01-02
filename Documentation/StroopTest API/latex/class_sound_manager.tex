@@ -1,0 +1,138 @@
+\hypertarget{class_sound_manager}{}\doxysection{Sound\+Manager Class Reference}
+\label{class_sound_manager}\index{SoundManager@{SoundManager}}
+
+
+Responsible for controlling all of the sound within the game  
+
+
+
+
+Inheritance diagram for Sound\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{class_sound_manager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sound\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{class_sound_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_sound_manager_a8673ec985174e10920dbf297d32c4525}{Sound\+Selection}} \{ {\bfseries Player\+Select} = 1
+, {\bfseries Wrong\+Selection} = 2
+, {\bfseries Transition} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em An enumerable for the sounds available within the game \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_sound_manager_ada019e45e8e89f3d0e75d694857a3544}{Play\+Sound}} (\mbox{\hyperlink{class_sound_manager_a8673ec985174e10920dbf297d32c4525}{Sound\+Selection}} sound=Sound\+Selection.\+Player\+Select)
+\begin{DoxyCompactList}\small\item\em A button to test the sounds within the inspector \end{DoxyCompactList}\item 
+Audio\+Clip \mbox{\hyperlink{class_sound_manager_a14305a550837168b2d31e5278bcbe6ac}{Sound\+Library}} (\mbox{\hyperlink{class_sound_manager_a8673ec985174e10920dbf297d32c4525}{Sound\+Selection}} sounds)
+\begin{DoxyCompactList}\small\item\em Sound\+Library \+: Collection of available sounds for the game \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sound_manager_ab3ce2df6d3babb5157e65c4c800fbe34}\label{class_sound_manager_ab3ce2df6d3babb5157e65c4c800fbe34}} 
+Audio\+Clip {\bfseries player\+Select}
+\item 
+\mbox{\Hypertarget{class_sound_manager_a8d4d4b470956a5046a5303edeeedda14}\label{class_sound_manager_a8d4d4b470956a5046a5303edeeedda14}} 
+Audio\+Clip {\bfseries wrong\+Selection}
+\item 
+\mbox{\Hypertarget{class_sound_manager_a1ef34001187628d1efc03c623fa6cd3f}\label{class_sound_manager_a1ef34001187628d1efc03c623fa6cd3f}} 
+Audio\+Clip {\bfseries transition}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sound_manager_a4ceb176bb67059b35136a96fd9221824}\label{class_sound_manager_a4ceb176bb67059b35136a96fd9221824}} 
+static \mbox{\hyperlink{class_sound_manager}{Sound\+Manager}} {\bfseries Instance}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Responsible for controlling all of the sound within the game 
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_sound_manager_a8673ec985174e10920dbf297d32c4525}\label{class_sound_manager_a8673ec985174e10920dbf297d32c4525}} 
+\index{SoundManager@{SoundManager}!SoundSelection@{SoundSelection}}
+\index{SoundSelection@{SoundSelection}!SoundManager@{SoundManager}}
+\doxysubsubsection{\texorpdfstring{SoundSelection}{SoundSelection}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_sound_manager_a8673ec985174e10920dbf297d32c4525}{Sound\+Manager.\+Sound\+Selection}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+An enumerable for the sounds available within the game 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sound_manager_ada019e45e8e89f3d0e75d694857a3544}\label{class_sound_manager_ada019e45e8e89f3d0e75d694857a3544}} 
+\index{SoundManager@{SoundManager}!PlaySound@{PlaySound}}
+\index{PlaySound@{PlaySound}!SoundManager@{SoundManager}}
+\doxysubsubsection{\texorpdfstring{PlaySound()}{PlaySound()}}
+{\footnotesize\ttfamily void Sound\+Manager.\+Play\+Sound (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sound_manager_a8673ec985174e10920dbf297d32c4525}{Sound\+Selection}}}]{sound = {\ttfamily SoundSelection.PlayerSelect} }\end{DoxyParamCaption})}
+
+
+
+A button to test the sounds within the inspector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_manager_ada019e45e8e89f3d0e75d694857a3544_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_manager_ada019e45e8e89f3d0e75d694857a3544_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_sound_manager_a14305a550837168b2d31e5278bcbe6ac}\label{class_sound_manager_a14305a550837168b2d31e5278bcbe6ac}} 
+\index{SoundManager@{SoundManager}!SoundLibrary@{SoundLibrary}}
+\index{SoundLibrary@{SoundLibrary}!SoundManager@{SoundManager}}
+\doxysubsubsection{\texorpdfstring{SoundLibrary()}{SoundLibrary()}}
+{\footnotesize\ttfamily Audio\+Clip Sound\+Manager.\+Sound\+Library (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sound_manager_a8673ec985174e10920dbf297d32c4525}{Sound\+Selection}}}]{sounds }\end{DoxyParamCaption})}
+
+
+
+Sound\+Library \+: Collection of available sounds for the game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sounds} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_sound_manager_a14305a550837168b2d31e5278bcbe6ac_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Stroop\+Test/\+Stroop\+Test/\+Stroop\+Test/\+Assets/\+Scripts/\+Manager\+Scripts/Sound\+Manager.\+cs\end{DoxyCompactItemize}

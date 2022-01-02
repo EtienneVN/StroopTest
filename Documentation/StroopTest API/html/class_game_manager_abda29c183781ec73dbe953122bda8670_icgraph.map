@@ -1,0 +1,4 @@
+<map id="GameManager.InitPlayerData" name="GameManager.InitPlayerData">
+<area shape="rect" id="node1" title="Function used to initialise the players base data" alt="" coords="241,5,433,32"/>
+<area shape="rect" id="node2" href="$class_interface_manager.html#a22132f76f3a5e31dd86f731e247d26f1" title="Button event to start the game" alt="" coords="5,5,193,32"/>
+</map>

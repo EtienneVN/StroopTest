@@ -1,0 +1,4 @@
+<map id="GamePlay" name="GamePlay">
+<area shape="rect" id="node1" title="Responsible for all the script that is run during the gameplay of the game" alt="" coords="47,80,130,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,172,32"/>
+</map>

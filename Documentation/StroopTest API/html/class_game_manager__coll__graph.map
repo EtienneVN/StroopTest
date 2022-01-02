@@ -1,0 +1,4 @@
+<map id="GameManager" name="GameManager">
+<area shape="rect" id="node1" title="Responsible for the games state and player data" alt="" coords="35,81,142,108"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,172,32"/>
+</map>

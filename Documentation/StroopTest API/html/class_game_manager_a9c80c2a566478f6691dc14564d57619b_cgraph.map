@@ -1,0 +1,5 @@
+<map id="GameManager.TransitionToState" name="GameManager.TransitionToState">
+<area shape="rect" id="node1" title="Function used to transition to a new state" alt="" coords="5,5,187,47"/>
+<area shape="rect" id="node2" href="$class_sound_manager.html#ada019e45e8e89f3d0e75d694857a3544" title="A button to test the sounds within the inspector" alt="" coords="235,13,411,39"/>
+<area shape="rect" id="node3" href="$class_sound_manager.html#a14305a550837168b2d31e5278bcbe6ac" title="SoundLibrary : Collection of available sounds for the game" alt="" coords="459,13,648,39"/>
+</map>

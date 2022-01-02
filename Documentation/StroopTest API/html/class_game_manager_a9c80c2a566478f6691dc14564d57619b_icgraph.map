@@ -1,0 +1,10 @@
+<map id="GameManager.TransitionToState" name="GameManager.TransitionToState">
+<area shape="rect" id="node1" title="Function used to transition to a new state" alt="" coords="261,150,443,191"/>
+<area shape="rect" id="node2" href="$class_interface_manager.html#a33bffba413f7fe0bbaaaf27af9839e8c" title="Button event to return to the previous menu" alt="" coords="13,5,206,32"/>
+<area shape="rect" id="node3" href="$class_interface_manager.html#ac01f0037223fc770b5a43ef3e2522e09" title="Button event to transition to the options menu" alt="" coords="12,56,207,83"/>
+<area shape="rect" id="node4" href="$class_interface_manager.html#a3d9d93bb49486beef5ad9208745c9f9c" title="Button event to transition to the pause menu" alt="" coords="12,107,207,133"/>
+<area shape="rect" id="node5" href="$class_interface_manager.html#a51c68ebb53c8b4ba9e6a38cf249ffe18" title="Button event to transition to the post game screen" alt="" coords="16,157,203,184"/>
+<area shape="rect" id="node6" href="$class_interface_manager.html#ace25857ec9fb64eaea92f829d5041132" title="Button event to resume the game from the pause menu" alt="" coords="5,208,213,235"/>
+<area shape="rect" id="node7" href="$class_interface_manager.html#a22132f76f3a5e31dd86f731e247d26f1" title="Button event to start the game" alt="" coords="15,259,203,285"/>
+<area shape="rect" id="node8" href="$class_interface_manager.html#ab74abaf5409924b642388ccb84e5801b" title="Button event to transition to the title menu" alt="" coords="19,309,200,336"/>
+</map>

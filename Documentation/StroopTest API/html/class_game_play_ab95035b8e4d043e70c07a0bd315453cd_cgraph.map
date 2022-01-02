@@ -1,0 +1,5 @@
+<map id="GamePlay.CompareSelectedColour" name="GamePlay.CompareSelectedColour">
+<area shape="rect" id="node1" title="Compares the player selected text with the text from the stroop test object" alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node2" href="$class_sound_manager.html#ada019e45e8e89f3d0e75d694857a3544" title="A button to test the sounds within the inspector" alt="" coords="244,13,420,39"/>
+<area shape="rect" id="node3" href="$class_sound_manager.html#a14305a550837168b2d31e5278bcbe6ac" title="SoundLibrary : Collection of available sounds for the game" alt="" coords="468,13,657,39"/>
+</map>
